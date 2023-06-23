@@ -6,7 +6,9 @@ import { Button, Container, Stack, TextField } from "@mui/material";
 function App() {
   const [text, setText] = useState("");
 
-  const onCalculating = () => {};
+  const onCalculating = () => {
+    console.log("testing");
+  };
 
   return (
     <Container>
