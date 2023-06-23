@@ -1,25 +1,60 @@
 import React, { useState } from "react";
-import logo from "./logo.svg";
 import "./App.css";
 import { Button, Container, Stack, TextField } from "@mui/material";
+import { Controller, useForm } from "react-hook-form";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 function App() {
   const [text, setText] = useState("");
 
+  const schema = yup.object().shape({
+    level: yup.number().min(6, "Min is 6").max(19, "Max is 19"),
+  });
+
+  const {
+    handleSubmit,
+    watch,
+    reset,
+    control,
+    setValue,
+    getValues,
+    setError,
+    formState: { isDirty, isValid, errors, touchedFields },
+  } = useForm({
+    mode: "all",
+    defaultValues: {
+      level: undefined,
+    },
+    resolver: yupResolver(schema),
+  });
+
   const onCalculating = () => {
-    console.log("testing");
+    setText(watch().level!.toString());
   };
 
   return (
     <Container>
       <Stack flexBasis={1} pt={6} spacing={2}>
-        <TextField
-          fullWidth
-          label="Input number"
-          value={text}
-          onChange={(e) => setText(e.target.value)}
+        <Controller
+          name="level"
+          control={control}
+          render={({ field, fieldState }) => {
+            return (
+              <TextField
+                {...field}
+                fullWidth
+                label="Input number"
+                error={!!fieldState.error?.message}
+                helperText={fieldState.error?.message}
+                onChange={(e) => field.onChange(e)}
+                type={"number"}
+              />
+            );
+          }}
         />
-        <Button variant="contained" onClick={onCalculating}>
+
+        <Button variant="contained" disabled={!isValid} onClick={onCalculating}>
           Calculating
         </Button>
       </Stack>
