@@ -11,8 +11,9 @@ function App() {
   const schema = yup.object().shape({
     level: yup
       .number()
-      .min(6, "ĐM nhỏ nhất là 6 mà")
-      .max(19, "Có lv cao hơn 19 à con gà"),
+      .min(6, "ĐM lv nhỏ nhất là 6 mà")
+      .max(19, "Có lv cao hơn 19 à con gà")
+      .typeError("ĐM lv nhỏ nhất là 6 mà"),
   });
 
   const {
@@ -247,7 +248,10 @@ function App() {
                 label="Nhập lv zô đây nè"
                 error={!!fieldState.error?.message}
                 helperText={fieldState.error?.message}
-                onChange={(e) => field.onChange(e)}
+                onChange={(e) => {
+                  field.onChange(e);
+                  setItem(undefined);
+                }}
                 type={"number"}
               />
             );
@@ -265,7 +269,7 @@ function App() {
             <Typography variant="h5" textAlign={"center"} sx={{ color: "red" }}>
               Tính ra rồi dễ ẹc -_-
             </Typography>
-            <Typography fontWeight={500}>
+            <Typography fontWeight={500} mt={3}>
               Nếu nâng từ lv{lv - 1} đến lv{lv} thì cần
             </Typography>
             <Stack pl={2}>
@@ -276,7 +280,7 @@ function App() {
               <Typography>Note: {item.note}</Typography>
             </Stack>
 
-            <Typography mt={5} fontWeight={500}>
+            <Typography mt={3} fontWeight={500}>
               Nếu nâng từ lv6 đến lv{lv} thì cần
             </Typography>
             <Stack pl={2}>
