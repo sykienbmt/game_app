@@ -6,7 +6,7 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 function App() {
-  const [text, setText] = useState<ReactNode>("");
+  const [item, setItem] = useState<Item | undefined>(undefined);
 
   const schema = yup.object().shape({
     level: yup
@@ -33,12 +33,208 @@ function App() {
   });
 
   const onCalculating = () => {
-    // setText(watch().level!.toString());
-    setText(demo);
+    const lv = watch().level!.toString();
+    switch (lv) {
+      case "6":
+        return setItem(level6());
+      case "7":
+        return setItem(level7());
+      case "8":
+        return setItem(level8());
+      case "9":
+        return setItem(level9());
+      case "10":
+        return setItem(level10());
+      case "11":
+        return setItem(level11());
+      case "12":
+        return setItem(level12());
+      case "13":
+        return setItem(level13());
+      case "14":
+        return setItem(level14());
+      case "15":
+        return setItem(level15());
+      case "16":
+        return setItem(level16());
+      case "17":
+        return setItem(level17());
+      case "18":
+        return setItem(level18());
+      case "19":
+        return setItem(level19());
+      default:
+        break;
+    }
   };
+
+  const level6 = (): Item => {
+    return {
+      copy: 1,
+      foodAny: 0,
+      foodSame: 1,
+      stone: 0,
+      total: { copy: 1, foodAny: 0, foodSame: 1, stone: 0 },
+    };
+  };
+
+  const level7 = (): Item => {
+    return {
+      copy: 0,
+      foodAny: 0,
+      foodSame: 2,
+      stone: 500,
+      note: "2 Food hệ",
+      total: { copy: 1, foodAny: 0, foodSame: 3, stone: 0 },
+    };
+  };
+
+  const level8 = (): Item => {
+    return {
+      copy: 0,
+      foodAny: 0,
+      foodSame: 3,
+      stone: 500,
+      note: "3 Food hệ",
+      total: { copy: 1, foodAny: 0, foodSame: 6, stone: 1000 },
+    };
+  };
+
+  const level9 = (): Item => {
+    return {
+      copy: 1,
+      foodAny: 0,
+      foodSame: 5,
+      stone: 3000,
+      note: "1 copy + 1 Food hệ 6* + 2 Food hệ",
+      total: { copy: 2, foodAny: 0, foodSame: 11, stone: 4000 },
+    };
+  };
+
+  const level10 = (): Item => {
+    return {
+      copy: 0,
+      foodAny: 0,
+      foodSame: 4,
+      stone: 1000,
+      note: "4 Food hệ",
+      total: { copy: 2, foodAny: 0, foodSame: 15, stone: 5000 },
+    };
+  };
+
+  const level11 = (): Item => {
+    return {
+      copy: 0,
+      foodAny: 0,
+      foodSame: 6,
+      stone: 1000,
+      note: "6 Food hệ",
+      total: { copy: 2, foodAny: 0, foodSame: 21, stone: 6000 },
+    };
+  };
+
+  const level12 = (): Item => {
+    return {
+      copy: 2,
+      foodAny: 0,
+      foodSame: 14,
+      stone: 3000,
+      note: "2 copy + 1 Food hệ 9*",
+      total: { copy: 4, foodAny: 0, foodSame: 35, stone: 9000 },
+    };
+  };
+
+  const level13 = (): Item => {
+    return {
+      copy: 0,
+      foodAny: 0,
+      foodSame: 6,
+      stone: 1500,
+      note: "6 Food hệ",
+      total: { copy: 4, foodAny: 0, foodSame: 41, stone: 10500 },
+    };
+  };
+
+  const level14 = (): Item => {
+    return {
+      copy: 0,
+      foodAny: 0,
+      foodSame: 8,
+      stone: 1500,
+      note: "8 Food hệ",
+      total: { copy: 4, foodAny: 0, foodSame: 49, stone: 12000 },
+    };
+  };
+
+  const level15 = (): Item => {
+    return {
+      copy: 3,
+      foodAny: 14,
+      foodSame: 14,
+      stone: 8000,
+      note: "3 copy + 1 Food hệ 9* + 1 Food bất kì 9*",
+      total: { copy: 7, foodAny: 14, foodSame: 63, stone: 20000 },
+    };
+  };
+
+  const level16 = (): Item => {
+    return {
+      copy: 0,
+      foodAny: 14,
+      foodSame: 0,
+      stone: 15000,
+      note: "1 Food bất kì 9*",
+      total: { copy: 7, foodAny: 28, foodSame: 63, stone: 35000 },
+    };
+  };
+
+  const level17 = (): Item => {
+    return {
+      copy: 3,
+      foodAny: 40,
+      foodSame: 11,
+      stone: 20000,
+      note: "1 copy 9* + 1 Food bất kì 12*",
+      total: { copy: 10, foodAny: 28, foodSame: 74, stone: 55000 },
+    };
+  };
+
+  const level18 = (): Item => {
+    return {
+      copy: 3,
+      foodAny: 54,
+      foodSame: 11,
+      stone: 25000,
+      note: "1 copy 9* + 1 Food bất kì 9* + 1 Food bất kì 12*",
+      total: { copy: 13, foodAny: 122, foodSame: 85, stone: 80000 },
+    };
+  };
+
+  const level19 = (): Item => {
+    return {
+      copy: 5,
+      foodAny: 54,
+      foodSame: 35,
+      stone: 30000,
+      note: "1 copy 12* + 1 Food bất kì 9* + 1 Food bất kì 12*",
+      total: { copy: 18, foodAny: 176, foodSame: 120, stone: 110000 },
+    };
+  };
+
+  const lv = Number(watch().level!.toString() ?? 0);
 
   return (
     <Container>
+      <Typography
+        position={"fixed"}
+        sx={{
+          bottom: 10,
+          right: 10,
+          color: "#808080",
+        }}
+      >
+        By Starr: v2.0.0
+      </Typography>
       <Stack flexBasis={1} pt={6} spacing={2}>
         <Controller
           name="level"
@@ -63,27 +259,40 @@ function App() {
         </Button>
       </Stack>
 
-      <Stack pt={3}>{text}</Stack>
+      <Stack pt={4} width={"100%"}>
+        {item && (
+          <Stack flexBasis={1}>
+            <Typography variant="h5" textAlign={"center"} sx={{ color: "red" }}>
+              Tính ra rồi dễ ẹc -_-
+            </Typography>
+            <Typography fontWeight={500}>
+              Nếu nâng từ lv{lv - 1} đến lv{lv} thì cần
+            </Typography>
+            <Stack pl={2}>
+              <Typography>Số copy: {item.copy}</Typography>
+              <Typography>Số food hệ: {item.foodSame}</Typography>
+              <Typography>Số food bất kì: {item.foodAny}</Typography>
+              <Typography>Số đá: {item.stone}</Typography>
+              <Typography>Note: {item.note}</Typography>
+            </Stack>
+
+            <Typography mt={5} fontWeight={500}>
+              Nếu nâng từ lv6 đến lv{lv} thì cần
+            </Typography>
+            <Stack pl={2}>
+              <Typography>Số copy: {item.total.copy}</Typography>
+              <Typography>Số food hệ: {item.total.foodSame}</Typography>
+              <Typography>Số food bất kì: {item.total.foodAny}</Typography>
+              <Typography>Số đá: {item.total.stone}</Typography>
+            </Stack>
+          </Stack>
+        )}
+      </Stack>
     </Container>
   );
 }
 
 export default App;
-
-const textInput = `5>6 : 1 copy+ 1 food hệ <br>
-6>7 : 2 food 5* hệ
-7>8  : 3 food 5* hệ
-8>9 : 1 copy+1 food hệ 6*+2 food 5*hệ
-9>10: 4 food hệ 5*
-10>11: 6 food hệ 5*
-11>12: 2 copy + 1 food hệ 9*
-12>13: 6 food hệ 5*
-13>14: 8 food hệ 5*
-14>15:3 copy+ 1 food hệ 9*+ 1food 9* bất kì
-15>16 : 1 food 9* bất kì
-16>17 : 1 copy 9* + 1 food 12*
-17>18 : 1 copy 9* + 1 food 12* + 1 food 9*
-18>19 : 1 copy 12* + 1 food 12* + 1 food 9*`;
 
 const demo = (
   <Stack>
@@ -106,3 +315,19 @@ const demo = (
     <Typography>{"18>19 : 1 copy 12* + 1 food 12* + 1 food 9*"}</Typography>
   </Stack>
 );
+
+export interface Item {
+  copy: number;
+  foodSame: number;
+  foodAny: number;
+  stone: number;
+  total: Total;
+  note?: string;
+}
+
+interface Total {
+  copy: number;
+  foodSame: number;
+  foodAny: number;
+  stone: number;
+}
