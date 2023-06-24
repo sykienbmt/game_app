@@ -86,7 +86,7 @@ function App() {
       foodSame: 2,
       stone: 500,
       note: "2 Food hệ",
-      total: { copy: 1, foodAny: 0, foodSame: 3, stone: 0 },
+      total: { copy: 1, foodAny: 0, foodSame: 3, stone: 500 },
     };
   };
 
